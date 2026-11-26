@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The New Seven Wonders of the World</title>
+
+  <!-- fonts from google fonts (needs internet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <noscript><style>#loader{display:none} body.loading{overflow:auto}</style></noscript>
+</head>
+<body class="loading">
+
+  <!-- loading screen (script.js removes it when the page is ready) -->
+  <div id="loader" aria-hidden="true">
+    <div class="ld-panel ld-top"></div>
+    <div class="ld-panel ld-bottom"></div>
+    <div class="ld-center">
+      <div class="ld-ring">
+        <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i>
+        <i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i>
+        <div class="ld-core"></div>
+      </div>
+      <div class="ld-title">The New Seven Wonders</div>
+      <div class="ld-bar"><b id="ldbar"></b></div>
+      <div class="ld-count" id="ldcount">0%</div>
+    </div>
+  </div>
+
+  <!-- glowing cursor (desktop only, added by script.js) -->
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursorDot" aria-hidden="true"></div>
+
+  <!-- back to top button with a progress ring -->
+  <button id="toTop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="trk" cx="22" cy="22" r="19"/><circle class="bar" cx="22" cy="22" r="19"/></svg>
+    <span aria-hidden="true">&#8593;</span>
+  </button>
+
+  <!-- colored wipe that plays when you open or leave a learn more page -->
+  <div id="curtain" aria-hidden="true"><span id="curtainText"></span></div>
+
+
+  <!-- bar at the top that fills up when you scroll -->
+  <div id="progress"></div>
+
+  <!-- dots on the side to jump to each wonder -->
+  <nav class="rail" id="rail" aria-label="Wonders"></nav>
+
+  <!-- hero (first screen) -->
+  <header class="hero" id="top">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="layer" data-speed=".1" id="stars"></div>
+
+    <h1 data-speed="-.2" aria-label="The New Seven Wonders of the World">
+      <span style="animation-delay:.3s">The</span>
+      <span style="animation-delay:.45s">New</span>
+      <span class="gold" style="animation-delay:.6s">Seven</span>
+      <span style="animation-delay:.75s">Wonders</span>
+      <span style="animation-delay:.9s">of</span>
+      <span style="animation-delay:1.05s">the</span>
+      <span style="animation-delay:1.2s">World</span>
+    </h1>
+
+    <!-- the orb with 7 dots, one for each wonder -->
+    <div class="orb" data-speed=".3">
+      <div class="core"></div>
+      <div class="ring">
+        <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i>
+        <i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i>
+      </div>
+    </div>
+
+    <p class="sub" data-speed=".15">Seven places chosen in a worldwide vote. Scroll to visit each one.</p>
+    <div class="cue" aria-hidden="true"></div>
+  </header>
+
+  <!-- intro text -->
+  <section class="intro">
+    <p>Bernard Weber began the campaign in 2000, asking people everywhere to choose seven new wonders. More than 100 million votes later, the winners were announced in Lisbon on 7 July 2007. Seven landmarks from four continents made the list, and they are not ranked. The Pyramids of Giza, the only survivor of the ancient seven, hold honorary status.</p>
+  </section>
+
+  <!-- the 7 wonder sections get added here by script.js -->
+  <main id="wonders"></main>
+
+  <!-- the "learn more" page gets added here by script.js -->
+  <article id="detail" hidden></article>
+
+  <!-- how the vote worked -->
+  <section class="vote" id="vote">
+    <h2>How the vote worked</h2>
+    <p>The vote narrowed 176 nominated sites to 77 by December 2005. A panel chaired by former UNESCO head Federico Mayor Zaragoza then picked 21 finalists for architecture, cultural importance and beauty. Online and text-message votes decided the final seven.</p>
+    <p>UNESCO stated on 9 July 2007 that its World Heritage program is not linked to the campaign, though all seven wonders sit within World Heritage Sites. A separate vote for natural sites, the New 7 Wonders of Nature, was announced in 2011.</p>
+    <h3>The other finalists</h3>
+    <div class="pills">
+      <span>Acropolis, Greece</span>
+      <span>Alhambra, Spain</span>
+      <span>Angkor Wat, Cambodia</span>
+      <span>Eiffel Tower, France</span>
+      <span>Hagia Sophia, Turkey</span>
+      <span>Kiyomizu-dera, Japan</span>
+      <span>Kremlin and Red Square, Russia</span>
+      <span>Moai, Easter Island</span>
+      <span>Neuschwanstein, Germany</span>
+      <span>Pyramids of Giza, Egypt</span>
+      <span>Statue of Liberty, USA</span>
+      <span>Stonehenge, England</span>
+      <span>Sydney Opera House, Australia</span>
+      <span>Timbuktu, Mali</span>
+    </div>
+  </section>
+
+  <!-- plan your visit -->
+  <section class="plan" id="plan">
+    <h2>Which will you see first?</h2>
+    <p>Tap the wonders you want to visit and build your list.</p>
+    <div class="chips" id="chips"></div>
+    <div id="tally" role="status"></div>
+  </section>
+
+  <footer>Facts are rounded. The New7Wonders vote was a popularity poll, not a ruling by historians. Vote and visitor details from 7wonders.org.</footer>
+
+  <!-- big photo when you click a picture -->
+  <div id="lightbox" hidden role="dialog" aria-label="Enlarged photo"></div>
+
+  <script src="js/world.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
